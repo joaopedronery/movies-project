@@ -1,0 +1,31 @@
+.cardContainer {
+    width: 400px;
+    background-color: black;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.posterContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.cardContainer p {
+    color: #fff;
+    margin: 10px 0;
+}
+
+.cardContainer span {
+    background-color: #ffbb33;
+    color: #222;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+@media screen and (max-width: 900px) {
+    .cardContainer {
+        width: 300px;
+    }
+}

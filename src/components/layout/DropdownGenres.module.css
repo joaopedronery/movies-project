@@ -1,0 +1,29 @@
+.divGenres {
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: space-between;
+    background-color: #ffbb33;
+    border-radius: 3px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.divGenres .genre {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px;
+    width: 100px;
+    color: black;
+}
+
+.divGenres.show {
+    display: flex;
+}
+
+@media screen and (max-width: 900px) {
+    .divGenres.show {
+        display: none;
+    }
+}

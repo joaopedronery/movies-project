@@ -1,0 +1,27 @@
+.trendingInfoShow {
+    margin: 20px 0;
+}
+
+.trendingInfoShow h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.trendingInfoShow span {
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+
+.trendingInfoSelect select {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.inputSelect {
+    padding: 5px 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffbb33;
+    border-radius: 3px;
+    font-weight: 500;
+}
