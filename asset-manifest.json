@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/movies-project/static/css/main.0c85a31a.css",
+    "main.js": "/movies-project/static/js/main.c4db513d.js",
+    "static/media/profile_miss4.jpg": "/movies-project/static/media/profile_miss4.022ac3b16f313d1e998c.jpg",
+    "index.html": "/movies-project/index.html",
+    "main.0c85a31a.css.map": "/movies-project/static/css/main.0c85a31a.css.map",
+    "main.c4db513d.js.map": "/movies-project/static/js/main.c4db513d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c85a31a.css",
+    "static/js/main.c4db513d.js"
+  ]
+}
