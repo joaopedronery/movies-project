@@ -47,7 +47,8 @@ function Trending() {
                     type={movie.media_type === 'tv' ? 'Tv show' : 'Movie' }
                     vote_avg={parseFloat(movie.vote_average).toFixed(1)}
                     vote_count={movie.vote_count}
-                    release_date={movie.release_date}
+                    release_date={movie.release_date ? movie.release_date : null}
+                    first_air_date={movie.first_air_date ? movie.first_air_date : null}
                     />
                 ) : (
                     <ActorCard
@@ -57,7 +58,6 @@ function Trending() {
                     og_name={movie.original_name}
                     role={movie.known_for_department}
                     known_for={movie.known_for.length !== 0 ? movie.known_for : null}
-                    known_for_length={movie.known_for.length}
                     />
 
                 ))}

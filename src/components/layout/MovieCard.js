@@ -1,6 +1,6 @@
 import styles from './MovieCard.module.css';
 
-function MovieCard({ title, og_title, overview, type, vote_avg, vote_count, poster, release_date }) {
+function MovieCard({ title, og_title, overview, type, vote_avg, vote_count, poster, release_date, first_air_date }) {
     return (
         <div className={styles.cardContainer}>
             <div className={styles.posterContainer}>
@@ -13,7 +13,7 @@ function MovieCard({ title, og_title, overview, type, vote_avg, vote_count, post
                 <p><span>Type:</span> {type}</p>
                 <p><span>Vote average:</span> {vote_avg}</p>
                 <p><span>Vote count:</span> {vote_count}</p>
-                <p><span>Release date:</span> {release_date}</p>
+                <p><span>{release_date ? 'Release date:' : 'First air date'}</span> {release_date ? release_date : first_air_date}</p>
             </div>
         </ div>
     )

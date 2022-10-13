@@ -26,14 +26,14 @@ function SelectTrending({ timeWindow, mediaType, mediaChange, timeChange }) {
             <div className={styles.trendingInfoSelect}>
                 <form>
                     <label>Media Type:</label>
-                    <select defaultValue='movie' name='media_type' onChange={mediaChange} >
+                    <select className={styles.select} defaultValue='movie' name='media_type' onChange={mediaChange} >
                         <option value='all'>All</option>
                         <option value='movie'>Movie</option>
                         <option value='tv'>Tv Shows</option>
                         <option value='person'>Person</option>
                     </select>
                     <label>Time Window:</label>
-                    <select defaultValue='week' name='time_window' onChange={timeChange}>
+                    <select className={styles.select} defaultValue='week' name='time_window' onChange={timeChange}>
                         <option value='day'>Day</option>
                         <option value='week'>Week</option>
                     </select>
