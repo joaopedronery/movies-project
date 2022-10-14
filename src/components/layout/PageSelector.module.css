@@ -1,0 +1,27 @@
+.selectorContainer {
+    
+}
+
+.selectorContainer ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.selectorContainer button {
+    padding: 5px 7px;
+    background-color: #ffbb33;
+    cursor: pointer;
+    font-weight: 500;
+    border: 1px solid black;
+}
+
+.selected {
+    color: #fff;
+    background-color: grey !important;
+}
+
+@media screen and (max-width: 900px) {
+    .selectorContainer button {
+        padding: 8px 10px;
+    }
+}

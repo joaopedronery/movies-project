@@ -6,6 +6,7 @@ import ActorCard from '../layout/ActorCard';
 import profileMiss from '../../img/profile_miss4.jpg';
 import LoadingSpinner from '../layout/LoadingSpinner';
 import PageTitle from '../layout/PageTitle';
+import PageSelector from '../layout/PageSelector';
 
 function Trending() {
     const [mediaType, setMediaType] = useState('movie');
@@ -39,14 +40,17 @@ function Trending() {
         setMediaType(e.target.value);
     }
 
+    const onPageClick = (page) => {
+        setPage(page);
+    }
 
 
     return (
         <>
-        <PageTitle titleText='Trending'/>
+        <PageTitle titleText='Trending' />
         <div>
             <SelectTrending timeWindow={timeWindow} mediaType={mediaType} mediaChange={mediaChange} timeChange={timeChange} />
-            
+            <PageSelector onPageClick={onPageClick} currentPage={page}/>
             {!isLoading ? <div className={styles.cardsContainer}>
                 {moviesData.map((movie) =>  movie.media_type === 'tv' || movie.media_type === 'movie' ? (
                     <MovieCard
