@@ -1,8 +1,9 @@
 import styles from './Genres.module.css';
+import PageTitle from '../layout/PageTitle';
 
 function Genres() {
     return (
-        <p>genre</p>
+        <PageTitle titleText='Genres' />
     )
 }
 

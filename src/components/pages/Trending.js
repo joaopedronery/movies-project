@@ -4,23 +4,31 @@ import MovieCard from '../layout/MovieCard';
 import SelectTrending from '../layout/SelectTrending';
 import ActorCard from '../layout/ActorCard';
 import profileMiss from '../../img/profile_miss4.jpg';
+import LoadingSpinner from '../layout/LoadingSpinner';
+import PageTitle from '../layout/PageTitle';
 
 function Trending() {
     const [mediaType, setMediaType] = useState('movie');
     const [timeWindow, setTimeWindow] = useState('week');
     const [moviesData, setMoviesData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=a0613aadd6388a2410f231f12bddae65`, {
+        setIsLoading(true);
+        fetch(`https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=a0613aadd6388a2410f231f12bddae65&page=${page}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then((resp) => resp.json())
-        .then((data) => setMoviesData(data.results))
+        .then((data) => {
+            setMoviesData(data.results);
+            setIsLoading(false);
+        })
         .catch((err) => console.log(err))
-    }, [mediaType, timeWindow])
+    }, [mediaType, timeWindow, page])
 
     
     const timeChange = (e) => {
@@ -34,9 +42,12 @@ function Trending() {
 
 
     return (
+        <>
+        <PageTitle titleText='Trending'/>
         <div>
             <SelectTrending timeWindow={timeWindow} mediaType={mediaType} mediaChange={mediaChange} timeChange={timeChange} />
-            <div className={styles.cardsContainer}>
+            
+            {!isLoading ? <div className={styles.cardsContainer}>
                 {moviesData.map((movie) =>  movie.media_type === 'tv' || movie.media_type === 'movie' ? (
                     <MovieCard
                     key={movie.id}
@@ -61,8 +72,10 @@ function Trending() {
                     />
 
                 ))}
-            </div>
+            </div> : <LoadingSpinner />}
         </div>
+        </>
+        
     )
     
 

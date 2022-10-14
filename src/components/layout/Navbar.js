@@ -2,7 +2,7 @@ import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { FaBars } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import DropdownGenres from './DropdownGenres';
 
 function Navbar() {
@@ -10,7 +10,7 @@ function Navbar() {
     const [genres, setGenres] = useState([]);
     const [navListActive, setNavListActive] = useState(false);
     const [showGenres, setShowGenres] = useState(false);
-
+    const buttonRef = useRef(null);
 
     const handleClick = () => {
         setNavListActive(!navListActive);
@@ -22,6 +22,10 @@ function Navbar() {
 
     const setShowFalse = () => {
         setShowGenres(false);
+    }
+
+    const onClickOutside = () => {
+        setNavListActive(false);
     }
 
 
@@ -45,7 +49,7 @@ function Navbar() {
                     Logo
                 </div>
                 <div>
-                    <button className={styles.menu} onClick={handleClick}><FaBars /></button>
+                    <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
                     <ul className={navListActive ? `${styles.navList} ${styles.navListActive}` : styles.navList }>
                         <li className={styles.navItem}>
                             <Link to='/' className={styles.navLink}>Home</Link>
@@ -53,9 +57,9 @@ function Navbar() {
                         <li className={styles.navItem}>
                             <Link to='/trending' className={styles.navLink}>Trending</Link>
                         </li>
-                        <li onMouseOver={setShowTrue} onMouseOut={setShowFalse} className={styles.navItem}>
+                        <li  onMouseOver={setShowTrue} onMouseOut={setShowFalse} className={styles.navItem}>
                             <Link to='/genres' className={styles.navLink}>Genres</Link>
-                            <DropdownGenres  genres={genres} customClass={showGenres ? 'show' : ''} />
+                            <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef}/>
                         </li>
                         <li className={styles.navItem}>
                             <Link to='/sign-up' className={styles.navLink}>Sign Up</Link>

@@ -1,9 +1,10 @@
 import styles from './Home.module.css';
+import PageTitle from '../layout/PageTitle';
 
 function Home() {
     
     return (
-        <h1>Home</h1>
+        <PageTitle titleText='Home' />
     )
 }
 
