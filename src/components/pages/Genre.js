@@ -11,8 +11,11 @@ function Genre() {
     const [moviesData, setMoviesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [genres, setGenres] = useState([]);
+    const [genreName, setGenreName] = useState('');
 
     useEffect(() => {
+        setGenreName('');
         setIsLoading(true);
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}&with_watch_monetization_types=flatrate`, {
             method: 'GET',
@@ -26,11 +29,39 @@ function Genre() {
             setIsLoading(false);
         })
         .catch((err) => console.log(err))
-    }, [genreId])
+    }, [genreId, page])
+
+    useEffect(() => {
+        fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((resp) => resp.json())
+        .then((data) => setGenres(data.genres))
+        .catch((err) => console.log(err))
+    },[])
+
+    useEffect(() => {
+        genres.map((genre) => {
+            if (genre.id === parseInt(genreId)) {
+                setGenreName(genre.name);
+            }
+        })
+    }, [genres, genreName])
+
+    const onPageClick = (page) => {
+        setPage(page);
+    }
+
 
     return (
+    <>
+    <PageTitle titleText={genreName} />
     <div>
-        {!isLoading ? <div>
+        <PageSelector onPageClick={onPageClick} currentPage={page}/>
+        {!isLoading ? <div className={styles.cardsContainer}>
             {moviesData.map((movie) => (
                     <MovieCard
                     key={movie.id}
@@ -48,6 +79,7 @@ function Genre() {
         : <LoadingSpinner />
         }
     </div>
+    </>
     )
 }
 
