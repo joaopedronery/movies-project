@@ -1,13 +1,26 @@
 import styles from './SearchBar.module.css';
+import {useState} from 'react';
+import {Navigate, useNavigate} from 'react-router-dom';
+
 
 function SearchBar() {
 
+    const [search, setSearch] = useState('');
+    const navigate = useNavigate();
+
+    const handleOnChange = (e) => {
+        setSearch(e.target.value);
+    }
+
+    const handleSubmit = () => {
+        if (search) {
+            navigate(`/search/${search}`);
+        }
+    }
     return (
         <div>
-            <form>
-                <input className={styles.input} />
-                <input className={styles.submit} value='Search' type='submit' />
-            </form>
+            <input onChange={(handleOnChange)} className={styles.input} />
+            <button onClick={handleSubmit} className={styles.submit}>Search</button>
         </div>
     )
 }

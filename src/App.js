@@ -21,7 +21,7 @@ function App() {
             <Route path='/trending' element={<Trending />} />
             <Route path='/genres' element={<Genres />} />
             <Route path='/genre/:genreId' element={<Genre />} />
-            <Route path='/search' element={<Search />} />
+            <Route path='/search/:search' element={<Search />} />
             <Route path='/sign-up' element={<SignUp />} />
           </Routes>
         </Container>

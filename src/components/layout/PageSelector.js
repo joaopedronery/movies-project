@@ -10,7 +10,6 @@ function PageSelector({onPageClick, currentPage}) {
     const pagesClick = (e) => {
         const pag = parseInt(e.target.value);
         const pagIndex = pages.indexOf(pag);
-        console.log(pagIndex);
         if (pagIndex >= 4) {
             setPages([(pag-4), (pag-3), (pag-2), (pag-1), pag, (pag+1), (pag+2), (pag+3)]);
         } else if (pagIndex < 4) {
