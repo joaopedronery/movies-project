@@ -17,10 +17,10 @@ function App() {
         <Navbar />
         <Container>
           <Routes>
-            <Route exact path='/' element={<Home />}/>
+            <Route path='/' element={<Home />}/>
             <Route path='/trending' element={<Trending />} />
             <Route path='/genres' element={<Genres />} />
-            <Route path='/genre/:genre' element={<Genre />} />
+            <Route path='/genre/:genreId' element={<Genre />} />
             <Route path='/search' element={<Search />} />
             <Route path='/sign-up' element={<SignUp />} />
           </Routes>
