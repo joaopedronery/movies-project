@@ -1,5 +1,6 @@
 import styles from './PageSelector.module.css';
 import { useState } from 'react';
+import PageSelectorArrows from '../layout/PageSelectorArrows';
 
 
 function PageSelector({onPageClick, currentPage}) {
@@ -22,7 +23,40 @@ function PageSelector({onPageClick, currentPage}) {
         onPageClick(pag);
     }
 
+    const leftClick = () => {
+        if (currentPage > 1) {
+        const page = currentPage-1;
+        const pageIndex = pages.indexOf(page);
+        if (pageIndex >= 4) {
+            setPages([(page-4), (page-3), (page-2), (page-1), page, (page+1), (page+2), (page+3)]);
+        } else if (pageIndex < 4) {
+            if (page > 4) {
+                setPages([(page-4), (page-3), (page-2), (page-1), page, (page+1), (page+2), (page+3)]);
+            } else {
+                setPages([1, 2, 3, 4, 5, 6, 7, 8]);
+            }
+        }
+        onPageClick(page);
+        }
+    }
+
+    const rightClick = () => {
+        const page = currentPage+1;
+        const pageIndex = pages.indexOf(page);
+        if (pageIndex >= 4) {
+            setPages([(page-4), (page-3), (page-2), (page-1), page, (page+1), (page+2), (page+3)]);
+        } else if (pageIndex < 4) {
+            if (page > 4) {
+                setPages([(page-4), (page-3), (page-2), (page-1), page, (page+1), (page+2), (page+3)]);
+            } else {
+                setPages([1, 2, 3, 4, 5, 6, 7, 8]);
+            }
+        }
+        onPageClick(page);
+    }
+
     return (
+        <>
         <div className={styles.selectorContainer}>
             <p>Pages:</p>
             <ul>
@@ -31,6 +65,8 @@ function PageSelector({onPageClick, currentPage}) {
                 ))}
             </ul>
         </div>
+        <PageSelectorArrows leftClick={leftClick} rightClick={rightClick} page={currentPage}/>
+        </>
     )
 }
 
