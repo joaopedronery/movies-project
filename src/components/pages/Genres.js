@@ -2,11 +2,13 @@ import styles from './Genres.module.css';
 import PageTitle from '../layout/PageTitle';
 import {useEffect, useState} from 'react';
 import GenreCard from '../layout/GenreCard';
+import LoadingSpinner from '../layout/LoadingSpinner';
 
 
 function Genres() {
     
     const [genres, setGenres] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US', {
@@ -16,19 +18,23 @@ function Genres() {
             }
         })
         .then((resp) => resp.json())
-        .then((data) => setGenres(data.genres))
+        .then((data) => {
+            setGenres(data.genres);
+            setIsLoading(false);
+        })
         .catch((err) => console.log(err))
     },[])
     
     return (
         <div>
             <PageTitle titleText='Genres' />
-            <div className={styles.genreListContainer}>
+            {!isLoading ? <div className={styles.genreListContainer}>
                 {genres.map((genre) => (
                     <GenreCard key={genre.id} id={genre.id} name={genre.name} />
                 ))
                 }
-            </div>
+            </div> :
+            <LoadingSpinner />}
         </div>
     )
 }

@@ -2,13 +2,13 @@ import styles from './DropdownGenres.module.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 
-function DropdownGenres({genres, customClass, onClickOutside, buttonRef}) {
+function DropdownGenres({genres, customClass, onClickOutside, buttonRef, searchRef}) {
     const ref = useRef(null);
     
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (ref.current && !ref.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+            if (ref.current && !ref.current.contains(event.target) && !buttonRef.current.contains(event.target) && !searchRef.current.contains(event.target)) {
                 onClickOutside && onClickOutside();
             }
         };

@@ -8,6 +8,7 @@ import Search from './components/pages/Search';
 import SignUp from './components/pages/SignUp';
 import Genre from './components/pages/Genre';
 import Genres from './components/pages/Genres';
+import Footer from './components/layout/Footer';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
             <Route path='/sign-up' element={<SignUp />} />
           </Routes>
         </Container>
-        <div>footer</div>
+        <Footer />
       </Router>
     </div>
   );

@@ -1,9 +1,9 @@
 import styles from './PageTitle.module.css';
 
-function PageTitle({titleText}) {
+function PageTitle({titleText, customClass}) {
     return (
         <div className={styles.heroImage}>
-            <div className={styles.heroText}>
+            <div className={`${styles.heroText} ${styles[customClass]}`}>
             <h1>{titleText}</h1>
             </div>
         </div>

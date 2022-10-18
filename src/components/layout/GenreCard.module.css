@@ -18,6 +18,11 @@
     font-weight: 500;
 }
 
+.cardContainer a:hover {
+    color: #fff;
+    transition: 0.5s;
+}
+
 @media screen and (max-width: 500px) {
     .cardContainer {
         width: 150px;

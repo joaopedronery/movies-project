@@ -11,12 +11,18 @@
     z-index: 1;
 }
 
-.divGenres .genre {
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 10px;
-    width: 100px;
-    color: black;
+.divGenres a {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    padding: 10px !important;
+    width: 100px !important;
+    color: black !important;
+    border: none !important;
+}
+
+.divGenres a:hover {
+    color: #fff !important;
+    transition: 0.5s !important;
 }
 
 .divGenres.show {

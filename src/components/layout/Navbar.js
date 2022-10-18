@@ -11,6 +11,7 @@ function Navbar() {
     const [navListActive, setNavListActive] = useState(false);
     const [showGenres, setShowGenres] = useState(false);
     const buttonRef = useRef(null);
+    const searchRef = useRef(null);
 
     const handleClick = () => {
         setNavListActive(!navListActive);
@@ -25,6 +26,10 @@ function Navbar() {
     }
 
     const onClickOutside = () => {
+        setNavListActive(false);
+    }
+
+    const onSearchClick = () => {
         setNavListActive(false);
     }
 
@@ -59,12 +64,12 @@ function Navbar() {
                         </li>
                         <li  onMouseOver={setShowTrue} onMouseOut={setShowFalse} className={styles.navItem}>
                             <Link to='/genres' className={styles.navLink}>Genres</Link>
-                            <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef}/>
+                            <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef} searchRef={searchRef}/>
                         </li>
                         <li className={styles.navItem}>
                             <Link to='/sign-up' className={styles.navLink}>Sign Up</Link>
                         </li>
-                        <SearchBar />
+                        <SearchBar handleClick={onSearchClick} ref={searchRef}/>
                     </ul>
                 </div>
             </div>

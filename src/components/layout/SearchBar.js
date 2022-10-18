@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 
 
-function SearchBar() {
+function SearchBar({handleClick}) {
 
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
@@ -16,6 +16,7 @@ function SearchBar() {
         if (search) {
             navigate(`/search/${search}`);
         }
+        handleClick();
     }
     return (
         <div>

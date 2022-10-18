@@ -20,6 +20,10 @@
     font-size: 1.7rem;
 }
 
+.smallFont {
+    font-size: 1.2rem;
+}
+
 @media screen and (max-width: 900px) {
     .heroImage {
         margin-top: 10px;
@@ -28,5 +32,9 @@
 
     .heroText {
         font-size: 1.1rem;
+    }
+
+    .smallFont {
+        font-size: 0.7rem;
     }
 }
