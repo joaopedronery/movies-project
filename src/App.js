@@ -18,7 +18,7 @@ function App() {
         <Navbar />
         <Container>
           <Routes>
-            <Route path='/' element={<Home />}/>
+            <Route path='/movies-project' element={<Home />}/>
             <Route path='/trending' element={<Trending />} />
             <Route path='/genres' element={<Genres />} />
             <Route path='/genre/:genreId' element={<Genre />} />

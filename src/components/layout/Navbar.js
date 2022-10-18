@@ -57,7 +57,7 @@ function Navbar() {
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
                     <ul className={navListActive ? `${styles.navList} ${styles.navListActive}` : styles.navList }>
                         <li className={styles.navItem}>
-                            <Link to='/' className={styles.navLink}>Home</Link>
+                            <Link to='/movies-project' className={styles.navLink}>Home</Link>
                         </li>
                         <li className={styles.navItem}>
                             <Link to='/trending' className={styles.navLink}>Trending</Link>
