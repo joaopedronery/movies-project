@@ -5,10 +5,14 @@ import GenreCard from '../layout/GenreCard';
 import LoadingSpinner from '../layout/LoadingSpinner';
 
 
-function Genres() {
+function Genres({setContainer80}) {
     
     const [genres, setGenres] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setContainer80();
+    })
     
     useEffect(() => {
         fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US', {

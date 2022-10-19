@@ -6,7 +6,7 @@ import LoadingSpinner from '../layout/LoadingSpinner';
 import PageSelector from '../layout/PageSelector';
 import MovieCard from '../layout/MovieCard';
 
-function Genre() {
+function Genre({setContainer80}) {
     const {genreId} = useParams();
     const [moviesData, setMoviesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +14,9 @@ function Genre() {
     const [genres, setGenres] = useState([]);
     const [genreName, setGenreName] = useState('');
 
+    useEffect (() => {
+        setContainer80();
+    })
     useEffect(() => {
         setGenreName('');
         setIsLoading(true);

@@ -8,12 +8,16 @@ import LoadingSpinner from '../layout/LoadingSpinner';
 import PageTitle from '../layout/PageTitle';
 import PageSelector from '../layout/PageSelector';
 
-function Trending() {
+function Trending({setContainer80}) {
     const [mediaType, setMediaType] = useState('movie');
     const [timeWindow, setTimeWindow] = useState('week');
     const [moviesData, setMoviesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        setContainer80();
+    })
 
     useEffect(() => {
         setIsLoading(true);

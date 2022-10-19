@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 
 
-function SearchBar({handleClick}) {
+function SearchBar({handleClick, refe}) {
 
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function SearchBar({handleClick}) {
         handleClick();
     }
     return (
-        <div>
+        <div ref={refe}>
             <input onChange={(handleOnChange)} className={styles.input} />
             <button onClick={handleSubmit} className={styles.submit}>Search</button>
         </div>

@@ -33,6 +33,9 @@ function Navbar() {
         setNavListActive(false);
     }
 
+    const onNavLinkClick = () => {
+        setNavListActive(false);
+    }
 
     useEffect(() => {
         fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US', {
@@ -57,19 +60,19 @@ function Navbar() {
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
                     <ul className={navListActive ? `${styles.navList} ${styles.navListActive}` : styles.navList }>
                         <li className={styles.navItem}>
-                            <Link to='/movies-project' className={styles.navLink}>Home</Link>
+                            <Link onClick={onNavLinkClick} to='/movies-project' className={styles.navLink}>Home</Link>
                         </li>
                         <li className={styles.navItem}>
-                            <Link to='/trending' className={styles.navLink}>Trending</Link>
+                            <Link onClick={onNavLinkClick} to='/trending' className={styles.navLink}>Trending</Link>
                         </li>
                         <li  onMouseOver={setShowTrue} onMouseOut={setShowFalse} className={styles.navItem}>
-                            <Link to='/genres' className={styles.navLink}>Genres</Link>
+                            <Link onClick={onNavLinkClick} to='/genres' className={styles.navLink}>Genres</Link>
                             <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef} searchRef={searchRef}/>
                         </li>
                         <li className={styles.navItem}>
-                            <Link to='/sign-up' className={styles.navLink}>Sign Up</Link>
+                            <Link onClick={onNavLinkClick} to='/sign-up' className={styles.navLink}>Sign Up</Link>
                         </li>
-                        <SearchBar handleClick={onSearchClick} ref={searchRef}/>
+                        <SearchBar handleClick={onSearchClick} refe={searchRef}/>
                     </ul>
                 </div>
             </div>

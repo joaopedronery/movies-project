@@ -1,10 +1,24 @@
 import styles from './Home.module.css';
 import PageTitle from '../layout/PageTitle';
+import {useEffect} from 'react';
+import {FaCoins, FaSearch, FaUserCheck} from 'react-icons/fa';
 
-function Home() {
-    
+function Home({setContainerFull}) {
+    useEffect(() => {
+        setContainerFull();
+        
+    })
     return (
-        <PageTitle titleText='Home' />
+        <div className={styles.homeContainer}>
+            <div className={styles.heroImage}>
+                <div className={styles.heroText}>
+                    <h2>Welcome to</h2>
+                    <h2><span className={styles.spanText}>The Movies Hub</span></h2>
+                    <p>Search for movies and tv shows by genre, name or trending.</p>
+                    <p>It`s <span className={styles.spanText}>free!</span></p>
+                </div>
+            </div>
+        </div>
     )
 }
 
