@@ -1,7 +1,6 @@
 .homeContainer {
     width: 100%;
-    display: flex;
-    justify-content: center;
+
 }
 
 .topContainer {
@@ -11,7 +10,7 @@
 .heroImage {
 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../img/homeWallpaper.jpg");
 height: 35vh;
-width: 100vw;
+width: 100%;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -48,6 +47,12 @@ justify-content: center;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
+}
+
+.benefitsContainer {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 900px) {

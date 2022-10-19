@@ -1,7 +1,7 @@
 import styles from './Home.module.css';
 import PageTitle from '../layout/PageTitle';
 import {useEffect} from 'react';
-import {FaCoins, FaSearch, FaUserCheck} from 'react-icons/fa';
+import BenefitsCard from '../layout/BenefitsCard';
 
 function Home({setContainerFull}) {
     useEffect(() => {
@@ -17,6 +17,9 @@ function Home({setContainerFull}) {
                     <p>Search for movies and tv shows by genre, name or trending.</p>
                     <p>It`s <span className={styles.spanText}>free!</span></p>
                 </div>
+            </div>
+            <div className={styles.benefitsContainer}>
+                <BenefitsCard />
             </div>
         </div>
     )

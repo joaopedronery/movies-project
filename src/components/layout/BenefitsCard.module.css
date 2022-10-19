@@ -1,0 +1,50 @@
+.cardsContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin-bottom: 40px;
+    width: 300px;
+}
+
+.card p {
+    margin-top: 15px;
+    font-weight: 300;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.coins {
+    color: #9B3498;
+}
+
+.search {
+    color: #5BBFE6;
+}
+
+.user {
+    color: #E5A00D;
+}
+
+.svgContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    text-align: center;
+}
+
+svg {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .cardsContainer {
+        justify-content: center;
+    }
+}
