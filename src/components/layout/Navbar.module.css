@@ -12,6 +12,17 @@
 
 .logoContainer {
     color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer svg {
+    margin-right: 5px;
+    color: #ffbb33;
+}
+
+.logoContainer p {
+    border-bottom: 1px solid #ffbb33;
 }
 
 .searchbarContainer {

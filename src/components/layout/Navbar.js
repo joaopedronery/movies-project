@@ -1,9 +1,10 @@
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaFilm } from 'react-icons/fa';
 import { useState, useEffect, useRef } from 'react';
 import DropdownGenres from './DropdownGenres';
+
 
 function Navbar() {
     
@@ -54,7 +55,8 @@ function Navbar() {
         <div className={styles.navbarContainer}>
             <div className={styles.navbar}>
                 <div className={styles.logoContainer}>
-                    Logo
+                    <FaFilm />
+                    <p>The Movies Hub</p>
                 </div>
                 <div>
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
