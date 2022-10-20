@@ -2,6 +2,7 @@ import styles from './Home.module.css';
 import PageTitle from '../layout/PageTitle';
 import {useEffect} from 'react';
 import BenefitsCard from '../layout/BenefitsCard';
+import TrendingHome from '../layout/TrendingHome';
 
 function Home({setContainerFull}) {
     useEffect(() => {
@@ -20,6 +21,9 @@ function Home({setContainerFull}) {
             </div>
             <div className={styles.benefitsContainer}>
                 <BenefitsCard />
+            </div>
+            <div className={styles.trendingContainer}>
+                <TrendingHome />
             </div>
         </div>
     )
