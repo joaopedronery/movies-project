@@ -20,7 +20,7 @@ function Search({setContainer80}) {
 
     useEffect(() =>{
         setIsLoading(true);
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US&query=${search}&page=${page}&include_adult=false`, {
+        fetch(`https://api.themoviedb.org/3/search/multi?api_key=a0613aadd6388a2410f231f12bddae65&language=en-US&query=${search}&page=${page}&include_adult=false`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

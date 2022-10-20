@@ -1,0 +1,59 @@
+.signUp {
+    margin-top: 30px;
+}
+
+.signUp h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.signUp p {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.signUp a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ffbb33;
+    border-radius: 6px;
+    color: black;
+    font-weight: 500;
+}
+
+.signUp a:hover {
+    background-color: black;
+    color: #ffbb33;
+    transition: .4s;
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.login h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.login p {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.login a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ffbb33;
+    border-radius: 6px;
+    color: black;
+    font-weight: 500;
+}
+
+.login a:hover {
+    background-color: black;
+    color: #ffbb33;
+    transition: .4s;
+}
