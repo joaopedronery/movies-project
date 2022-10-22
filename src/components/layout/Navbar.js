@@ -54,9 +54,11 @@ function Navbar() {
     return(
         <div className={styles.navbarContainer}>
             <div className={styles.navbar}>
-                <div className={styles.logoContainer}>
-                    <FaFilm />
-                    <p>The Movies Hub</p>
+                <div >
+                    <Link className={styles.logoContainer} to='/movies-project'>
+                        <FaFilm />
+                        <p>The Movies Hub</p>
+                    </Link>
                 </div>
                 <div>
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>

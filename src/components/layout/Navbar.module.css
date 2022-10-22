@@ -14,6 +14,7 @@
     color: #fff;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .logoContainer svg {

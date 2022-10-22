@@ -7,6 +7,7 @@ import LoadingSpinner from '../layout/LoadingSpinner';
 import PageSelector from '../layout/PageSelector';
 import profileMiss from '../../img/profile_miss4.jpg';
 import NoResults from '../layout/NoResults';
+import ActorCard from '../layout/ActorCard';
 
 function Search({setContainer80}) {
     const {search} = useParams();
@@ -45,7 +46,7 @@ function Search({setContainer80}) {
         <PageSelector onPageClick={onPageClick} currentPage={page} />
         {!isLoading && movieData.length > 0 &&
         <div className={styles.cardsContainer}>
-                {movieData.map((movie) => (
+                {movieData.map((movie) => ( movie.type === 'tv' || 'movie' ?
                     <MovieCard
                     key={movie.id}
                     poster={movie.poster_path ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` : profileMiss }
@@ -57,6 +58,13 @@ function Search({setContainer80}) {
                     vote_count={movie.vote_count}
                     release_date={movie.release_date ? movie.release_date : null}
                     first_air_date={movie.first_air_date ? movie.first_air_date : null}
+                    /> : 
+                    <ActorCard
+                    name={movie.name}
+                    og_name={movie.original_name}
+                    role={movie.known_for_department}
+                    known_for={movie.known_for}
+                    profile={`https://image.tmdb.org/t/p/w200${movie.profile_path}`} 
                     />))}
                     </div>}
         {!isLoading && movieData.length === 0 && <NoResults search={search} />}

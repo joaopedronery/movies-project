@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Container from './components/layout/Container';
 import Home from './components/pages/Home';
 import Trending from './components/pages/Trending';
@@ -10,6 +10,8 @@ import SignUp from './components/pages/SignUp';
 import Genre from './components/pages/Genre';
 import Genres from './components/pages/Genres';
 import Footer from './components/layout/Footer';
+import LoginApproved from './components/pages/LoginApproved';
+import {Authentication} from './components/Context/Authentication';
 
 
 function App() {
@@ -17,13 +19,13 @@ function App() {
   
   const setContainerFull = () => {
     setFullWidth(true);
-    console.log(fullWidth);
   }
 
   const setContainer80 = () => {
     setFullWidth(false);
-    console.log(fullWidth);
   }
+
+  const {loggedIn} = useContext(Authentication);
   
   return (
     <div className="App">
@@ -37,6 +39,7 @@ function App() {
             <Route path='/genre/:genreId' element={<Genre setContainer80={setContainer80} />} />
             <Route path='/search/:search' element={<Search setContainer80={setContainer80} />} />
             <Route path='/sign-up' element={<SignUp setContainer80={setContainer80} />} />
+            <Route path='/approvedLogin' element={<LoginApproved setContainer80={setContainer80} />} />
           </Routes>
         </Container>
         <Footer />

@@ -1,11 +1,26 @@
 import styles from './SignUp.module.css';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import PageTitle from '../layout/PageTitle';
 
 function SignUp({setContainer80}) {
+    
+    const [token, setToken] = useState();
+    
     useEffect(() => {
         setContainer80();
     })
+
+    useEffect(() => {
+        fetch('https://api.themoviedb.org/3/authentication/token/new?api_key=a0613aadd6388a2410f231f12bddae65', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((resp) => resp.json())
+        .then((data) => setToken(data.request_token))
+        .catch((err) => console.log(err))
+    }, [])
 
     return (
         <div>
@@ -19,7 +34,7 @@ function SignUp({setContainer80}) {
             <div className={styles.login}>
                 <h2>Already have a TMDB account?</h2>
                 <p>If you already have a TMDB account, you are ready to enjoy and explore The Movies Hub.</p>
-                <p><a href='#'>Login</a></p>
+                <p><a href={`https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/approvedLogin`}>Login</a></p>
             </div>
         </div>
 
