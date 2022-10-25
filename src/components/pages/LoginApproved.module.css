@@ -1,0 +1,47 @@
+.allContainer {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.loaderContainer {
+    display: none;
+}
+
+.loginStatusContainer {
+    display: none;
+}
+
+.loginStatusContainer h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.loginStatusContainer p {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.loginStatusContainer svg {
+    font-size: 8rem;
+}
+
+.loginStatusContainer a {
+    text-decoration: none;
+    color: #ffbb33;
+    background-color: #222;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.redSvg {
+    color: red;
+}
+
+.greenSvg {
+    color: green;
+}
+
+.show {
+    display: block;
+}

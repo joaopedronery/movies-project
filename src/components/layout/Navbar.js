@@ -1,9 +1,10 @@
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import { FaBars, FaFilm } from 'react-icons/fa';
-import { useState, useEffect, useRef } from 'react';
+import { FaBars, FaFilm, FaUserCircle } from 'react-icons/fa';
+import { useState, useEffect, useRef, useContext } from 'react';
 import DropdownGenres from './DropdownGenres';
+import { Authentication } from '../Context/Authentication';
 
 
 function Navbar() {
@@ -13,6 +14,7 @@ function Navbar() {
     const [showGenres, setShowGenres] = useState(false);
     const buttonRef = useRef(null);
     const searchRef = useRef(null);
+    const {loggedIn, setLoggedIn, sessionId, setSessionId} = useContext(Authentication);
 
     const handleClick = () => {
         setNavListActive(!navListActive);
@@ -54,13 +56,16 @@ function Navbar() {
     return(
         <div className={styles.navbarContainer}>
             <div className={styles.navbar}>
-                <div >
-                    <Link className={styles.logoContainer} to='/movies-project'>
+                <div className={styles.logoContainer}>
+                    <Link  to='/movies-project'>
                         <FaFilm />
                         <p>The Movies Hub</p>
                     </Link>
                 </div>
-                <div>
+                <div className={styles.linksContainer}>
+                    {loggedIn && <div className={styles.userCircleMobileContainer}>
+                        <Link className={styles.userCircleMobile}><FaUserCircle /></Link>
+                    </div>}
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
                     <ul className={navListActive ? `${styles.navList} ${styles.navListActive}` : styles.navList }>
                         <li className={styles.navItem}>
@@ -74,7 +79,7 @@ function Navbar() {
                             <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef} searchRef={searchRef}/>
                         </li>
                         <li className={styles.navItem}>
-                            <Link onClick={onNavLinkClick} to='/sign-up' className={styles.navLink}>Sign Up</Link>
+                            {!loggedIn ? <Link onClick={onNavLinkClick} to='/sign-up' className={styles.navLink}>Sign Up</Link> : <Link className={styles.userCircleDesktop}><FaUserCircle /></Link>}
                         </li>
                         <SearchBar handleClick={onSearchClick} refe={searchRef}/>
                     </ul>

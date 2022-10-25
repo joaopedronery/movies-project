@@ -11,6 +11,11 @@
 }
 
 .logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer a {
     color: #fff;
     display: flex;
     align-items: center;
@@ -26,11 +31,9 @@
     border-bottom: 1px solid #ffbb33;
 }
 
-.searchbarContainer {
-
+.linksContainer {
+    display: flex;
 }
-
-
 
 .navList {
     display: flex;
@@ -39,7 +42,6 @@
     align-items: center;
     text-align: start;
 }
-
 
 
 .navList li {
@@ -60,6 +62,25 @@
     border-color: #fff;
 }
 
+.userCircleDesktop {
+    border: none !important;
+}
+
+.userCircleDesktop svg {
+    font-size: 1.8rem;
+}
+
+.userCircleMobileContainer {
+    display: none;
+    align-items: center;
+}
+
+.userCircleMobileContainer a {
+    text-decoration: none;
+    color: #ffbb33;
+    font-weight: 500;
+}
+
 .navItem:hover .dropdownContent {
     display: flex;
 }
@@ -69,9 +90,7 @@
     display: none;
 }
 
-.navLink {
 
-}
 
 .menu {
     display: none;
@@ -101,6 +120,7 @@
     .menu {
         border: none;
         cursor: pointer;
+        background-color: #222;
     }
 
     .menu svg {
@@ -128,4 +148,14 @@
     .navList.navListActive {
         display: block;
     }
+
+    .userCircleDesktop {
+        display: none;
+    }
+
+    .userCircleMobileContainer {
+        display: flex;
+        margin-right: 10px;
+    }
+
 }
