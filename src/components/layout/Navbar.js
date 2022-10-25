@@ -64,7 +64,7 @@ function Navbar() {
                 </div>
                 <div className={styles.linksContainer}>
                     {loggedIn && <div className={styles.userCircleMobileContainer}>
-                        <Link className={styles.userCircleMobile}><FaUserCircle /></Link>
+                        <Link to='/account' className={styles.userCircleMobile}><FaUserCircle /></Link>
                     </div>}
                     <button ref={buttonRef} className={styles.menu} onClick={handleClick}><FaBars /></button>
                     <ul className={navListActive ? `${styles.navList} ${styles.navListActive}` : styles.navList }>
@@ -79,7 +79,7 @@ function Navbar() {
                             <DropdownGenres genres={genres} customClass={showGenres ? 'show' : ''} onClickOutside={onClickOutside} buttonRef={buttonRef} searchRef={searchRef}/>
                         </li>
                         <li className={styles.navItem}>
-                            {!loggedIn ? <Link onClick={onNavLinkClick} to='/sign-up' className={styles.navLink}>Sign Up</Link> : <Link className={styles.userCircleDesktop}><FaUserCircle /></Link>}
+                            {!loggedIn ? <Link onClick={onNavLinkClick} to='/sign-up' className={styles.navLink}>Sign Up</Link> : <Link to='/account' className={styles.userCircleDesktop}><FaUserCircle /></Link>}
                         </li>
                         <SearchBar handleClick={onSearchClick} refe={searchRef}/>
                     </ul>

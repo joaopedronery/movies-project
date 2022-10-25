@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Container from './components/layout/Container';
 import Home from './components/pages/Home';
 import Trending from './components/pages/Trending';
@@ -12,6 +12,7 @@ import Genres from './components/pages/Genres';
 import Footer from './components/layout/Footer';
 import LoginApproved from './components/pages/LoginApproved';
 import {Authentication} from './components/Context/Authentication';
+import Account from './components/pages/Account';
 
 
 function App() {
@@ -25,7 +26,77 @@ function App() {
     setFullWidth(false);
   }
 
-  const {loggedIn} = useContext(Authentication);
+  const {loggedIn, sessionId, accountId, setAccountId, setUsername, setFavoriteMovies, setFavoriteTv, setRatedMovies, setRatedTv, setWatchlistMovies, setWatchlistTv} = useContext(Authentication);
+  
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/account?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setUsername(data.username);
+            setAccountId(data.id);
+        })
+        .catch((err) => console.log(err))
+  }, [loggedIn])
+
+  useEffect(() => {
+    if (accountId) {
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setFavoriteMovies(data.results))
+      .catch((err) => console.log(err))
+    }
+  }, [accountId])
+
+  useEffect(() => {
+    if (accountId) {
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setFavoriteTv(data.results))
+      .catch((err) => console.log(err))
+    }
+  }, [accountId])
+
+  useEffect(() => {
+    if (accountId) {  
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setRatedMovies(data.results))
+      .catch((err) => console.log(err))
+    }
+  }, [accountId])
+
+  useEffect(() => {
+    if (accountId) {
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setRatedTv(data.results))
+      .catch((err) => console.log(err))
+    }
+  }, [accountId])
+
+  useEffect(() => {
+    if (accountId) {
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setWatchlistMovies(data.results))
+      .catch((err) => console.log(err))
+    }
+    }, [accountId])
+
+  
+  useEffect(() => {
+    if (accountId) {
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      .then((resp) => resp.json())
+      .then((data) => setWatchlistTv(data.results))
+      .catch((err) => console.log(err))
+    }
+  }, [accountId])
   
   return (
     <div className="App">
@@ -35,6 +106,7 @@ function App() {
           <Routes>
             <Route path='/movies-project' element={<Home setContainerFull={setContainerFull} />}/>
             <Route path='/trending' element={<Trending setContainer80={setContainer80} />} />
+            <Route path='/account' element={<Account setContainer80={setContainer80}/>}/>
             <Route path='/genres' element={<Genres setContainer80={setContainer80} />} />
             <Route path='/genre/:genreId' element={<Genre setContainer80={setContainer80} />} />
             <Route path='/search/:search' element={<Search setContainer80={setContainer80} />} />
