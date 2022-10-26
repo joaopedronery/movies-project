@@ -34,7 +34,7 @@ function SignUp({setContainer80}) {
             <div className={styles.login}>
                 <h2>Already have a TMDB account?</h2>
                 <p>If you already have a TMDB account, you are ready to enjoy and explore The Movies Hub.</p>
-                <p><a href={`https://www.themoviedb.org/authenticate/${token}?redirect_to=https://joaopedronery.github.io/approvedLogin`}>Login</a></p>
+                <p><a href={`https://www.themoviedb.org/authenticate/${token}?redirect_to=https://joaopedronery.github.io/movies-project`}>Login</a></p>
             </div>
         </div>
 

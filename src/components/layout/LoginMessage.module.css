@@ -1,0 +1,51 @@
+.loginStatusContainer {
+    width: 100%;
+    margin: 20px 0;
+    display: none;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    height: 250px;
+}
+
+.loginStatusCard {
+    background-color: rgb(189, 189, 189);
+    width: fit-content;
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.loginStatusContainer h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.loginStatusContainer p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.loginStatusContainer svg {
+    font-size: 4rem;
+}
+
+.loginStatusContainer a {
+    text-decoration: none;
+    color: #ffbb33;
+    background-color: #222;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.redSvg {
+    color: red;
+}
+
+.greenSvg {
+    color: green;
+}
+
+.show {
+    display: flex;
+}

@@ -39,6 +39,7 @@ function App() {
         .then((data) => {
             setUsername(data.username);
             setAccountId(data.id);
+            console.log(data.id);
         })
         .catch((err) => console.log(err))
   }, [loggedIn])
@@ -104,7 +105,7 @@ function App() {
         <Navbar />
         <Container customClass={fullWidth ? 'fullWidth' : ''}>
           <Routes>
-            <Route path='/movies-project' element={<Home setContainerFull={setContainerFull} />}/>
+            <Route path='/movies-project' element={<Home setContainerFull={setContainerFull} />} />
             <Route path='/trending' element={<Trending setContainer80={setContainer80} />} />
             <Route path='/account' element={<Account setContainer80={setContainer80}/>}/>
             <Route path='/genres' element={<Genres setContainer80={setContainer80} />} />

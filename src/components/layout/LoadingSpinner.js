@@ -1,8 +1,8 @@
 import styles from './LoadingSpinner.module.css';
 
-function LoadingSpinner() {
+function LoadingSpinner({customClass}) {
     return (
-      <div className={styles.spinnerContainer}>
+      <div className={`${styles.spinnerContainer} ${styles[customClass]}`}>
         <div className={styles.loadingSpinner}>
         </div>
       </div>
