@@ -67,6 +67,7 @@ function Genre({setContainer80}) {
         {!isLoading ? <div className={styles.cardsContainer}>
             {moviesData.map((movie) => (
                     <MovieCard
+                    id={movie.id}
                     key={movie.id}
                     poster={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                     title={movie.title ? movie.title : movie.name}

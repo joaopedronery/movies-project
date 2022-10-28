@@ -48,6 +48,7 @@ function Search({setContainer80}) {
         <div className={styles.cardsContainer}>
                 {movieData.map((movie) => ( movie.type === 'tv' || 'movie' ?
                     <MovieCard
+                    id={movie.id}
                     key={movie.id}
                     poster={movie.poster_path ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` : profileMiss }
                     title={movie.title ? movie.title : movie.name}

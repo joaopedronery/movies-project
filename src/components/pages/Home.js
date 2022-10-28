@@ -29,7 +29,6 @@ function Home({setContainerFull}) {
             if (data.session_id) {
                 setSessionId(data.session_id);
                 setLoggedIn(true);
-                setRequestToken(null);
                 console.log(data.session_id)
             }
         })

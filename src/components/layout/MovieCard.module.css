@@ -26,6 +26,68 @@
     font-weight: 500;
 }
 
+.actionsContainer {
+    padding-top: 10px;
+    border-top: 1px solid #ffbb33;
+}
+
+.buttonCard {
+    display: flex;
+    margin-top: 30px;
+}
+
+.buttonCard p {
+    margin: 10px 0px;
+    font-weight: 500;
+}
+
+.buttonCard button {
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonCard svg {
+    color: #ffbb33;
+}
+
+.buttonCard button:hover svg {
+    color: #fff;
+    transition: 0.5s;
+}
+
+.buttonCard button:hover p {
+    color: #ffbb33;
+    transition: 0.5s;
+}
+
+.rateCard p {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.rateCard input {
+    width: 100px;
+    height: 30px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.rateCard button {
+    border: none;
+    background-color: #ffbb33;
+    font-weight: 500;
+    padding: 7px 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.ratingStatus {
+   
+}
+
 @media screen and (max-width: 900px) {
     .cardContainer {
         width: 300px;

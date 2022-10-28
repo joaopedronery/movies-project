@@ -2,10 +2,12 @@ import styles from './Account.module.css';
 import { Authentication } from '../Context/Authentication';
 import { useContext, useState, useEffect, useRef } from 'react';
 import PageTitle from '../layout/PageTitle';
+import CarouselAccount from '../layout/CarouselAccount';
+
 
 function Account({setContainer80}) {
     
-    const {sessionId, username} = useContext(Authentication);
+    const {sessionId, username, favoriteTv, favoriteMovies, ratedMovies, ratedTv, watchlistMovies, watchlistTv} = useContext(Authentication);
     
 
     const carouselFavoriteMovies = useRef(null);
@@ -20,14 +22,14 @@ function Account({setContainer80}) {
     })
 
     return (
-        <div>
+        <div className={styles.accountContainer}>
             <PageTitle titleText={username} />
-            <div className={styles.carousel}>
-                
-            </div>
-            <div>
-
-            </div>
+            <CarouselAccount movieData={favoriteMovies} title='Favorite Movies'/>
+            <CarouselAccount movieData={favoriteTv} title='Favorite Tv Shows'/>
+            <CarouselAccount movieData={watchlistMovies} title='Movies Watchlist'/>
+            <CarouselAccount movieData={watchlistTv} title='Tv Shows Watchlist'/>
+            <CarouselAccount movieData={ratedMovies} title='Rated Movies'/>
+            <CarouselAccount movieData={ratedTv} title='Rated Tv Shows'/>
         </div>
     )
 }

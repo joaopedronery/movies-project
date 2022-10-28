@@ -26,8 +26,19 @@ function App() {
     setFullWidth(false);
   }
 
-  const {loggedIn, sessionId, accountId, setAccountId, setUsername, setFavoriteMovies, setFavoriteTv, setRatedMovies, setRatedTv, setWatchlistMovies, setWatchlistTv} = useContext(Authentication);
+  const {loggedIn, sessionId, accountId, setAccountId, setUsername, setFavoriteMovies, setFavoriteTv, setRatedMovies, setRatedTv, setWatchlistMovies, setWatchlistTv, refreshFM, favoriteMoviesIds, setFavoriteMoviesIds, refreshFTV, favoriteTvIds, setFavoriteTvIds, refreshRM, ratedMoviesIds, setRatedMoviesIds, refreshRTV, ratedTvIds, setRatedTvIds, refreshWTV, watchlistTvIds, setWatchlistTvIds, refreshWM, watchlistMoviesIds, setWatchlistMoviesIds} = useContext(Authentication);
   
+  const setIds = (list, setter) => {
+    let idsList;
+    if (list.length > 0) {
+      idsList = list.map((movie) => (movie.id));
+      setter(idsList);
+    } else {
+      setter([]);
+    }
+  }
+
+
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/account?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
             method: 'GET',
@@ -46,58 +57,76 @@ function App() {
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setFavoriteMovies(data.results))
+      .then((data) => {
+        setFavoriteMovies(data.results);
+        setIds(data.results, setFavoriteMoviesIds);
+      })
       .catch((err) => console.log(err))
     }
-  }, [accountId])
+  }, [accountId, refreshFM])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setFavoriteTv(data.results))
+      .then((data) => {
+        setFavoriteTv(data.results);
+        setIds(data.results, setFavoriteTvIds);
+      })
       .catch((err) => console.log(err))
     }
-  }, [accountId])
+  }, [accountId, refreshFTV])
 
   useEffect(() => {
     if (accountId) {  
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setRatedMovies(data.results))
+      .then((data) => {
+        setRatedMovies(data.results);
+        setIds(data.results, setRatedMoviesIds);
+      })
       .catch((err) => console.log(err))
     }
-  }, [accountId])
+  }, [accountId, refreshRM])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setRatedTv(data.results))
+      .then((data) => {
+        setRatedTv(data.results);
+        setIds(data.results, setRatedTvIds);
+      })
       .catch((err) => console.log(err))
     }
-  }, [accountId])
+  }, [accountId, refreshRTV])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setWatchlistMovies(data.results))
+      .then((data) => {
+        setWatchlistMovies(data.results);
+        setIds(data.results, setWatchlistMoviesIds);
+      })
       .catch((err) => console.log(err))
     }
-    }, [accountId])
+    }, [accountId, refreshWM])
 
   
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
       .then((resp) => resp.json())
-      .then((data) => setWatchlistTv(data.results))
+      .then((data) => {
+        setWatchlistTv(data.results);
+        setIds(data.results, setWatchlistTvIds);
+      })
       .catch((err) => console.log(err))
     }
-  }, [accountId])
+  }, [accountId, refreshWTV])
   
   return (
     <div className="App">
