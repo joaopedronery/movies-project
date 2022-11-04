@@ -1,0 +1,24 @@
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+.ratingLoadingSpinner {
+    width: 30px;
+    height: 30px;
+    border: 10px solid #4b4b4b; /* Light grey */
+    border-top: 10px solid #ffbb33; /* Black */
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
+}
+
+.ratingSpinnerContainer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from './Trending.module.css';
 import MovieCard from '../layout/MovieCard';
 import SelectTrending from '../layout/SelectTrending';
@@ -7,6 +7,7 @@ import profileMiss from '../../img/profile_miss4.jpg';
 import LoadingSpinner from '../layout/LoadingSpinner';
 import PageTitle from '../layout/PageTitle';
 import PageSelector from '../layout/PageSelector';
+import { Authentication } from '../Context/Authentication';
 
 function Trending({setContainer80}) {
     const [mediaType, setMediaType] = useState('movie');
@@ -14,9 +15,11 @@ function Trending({setContainer80}) {
     const [moviesData, setMoviesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const {refreshRating, setRefreshRating} = useContext(Authentication);
 
     useEffect(() => {
         setContainer80();
+        
     })
 
     useEffect(() => {
@@ -31,6 +34,7 @@ function Trending({setContainer80}) {
         .then((data) => {
             setMoviesData(data.results);
             setIsLoading(false);
+            setRefreshRating(!refreshRating);
         })
         .catch((err) => console.log(err))
     }, [mediaType, timeWindow, page])
@@ -58,6 +62,7 @@ function Trending({setContainer80}) {
             {!isLoading ? <div className={styles.cardsContainer}>
                 {moviesData.map((movie) =>  movie.media_type === 'tv' || movie.media_type === 'movie' ? (
                     <MovieCard
+                    fullObject={movie}
                     id={movie.id}
                     key={movie.id}
                     poster={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}

@@ -26,10 +26,11 @@ function AuthenticationProvider({children}) {
     const [watchlistTvIds, setWatchlistTvIds] = useState([]);
     const [refreshWM, setRefreshWM] = useState(false);
     const [watchlistMoviesIds, setWatchlistMoviesIds] = useState([]);
+    const [refreshRating, setRefreshRating] = useState(false);
 
 
     return (
-        <Authentication.Provider value={{loggedIn, setLoggedIn, sessionId, setSessionId, username, setUsername, accountId, setAccountId, favoriteMovies, setFavoriteMovies, favoriteTv, setFavoriteTv, ratedMovies, setRatedMovies, ratedTv, setRatedTv, watchlistMovies, setWatchlistMovies, watchlistTv, setWatchlistTv, refreshFM, setRefreshFM, favoriteMoviesIds, setFavoriteMoviesIds, refreshFTV, setRefreshFTV, favoriteTvIds, setFavoriteTvIds, refreshRM, setRefreshRM, ratedMoviesIds, setRatedMoviesIds, refreshRTV, setRefreshRTV, ratedTvIds, setRatedTvIds, refreshWTV, setRefreshWTV, watchlistTvIds, setWatchlistTvIds, refreshWM, setRefreshWM, watchlistMoviesIds, setWatchlistMoviesIds}}>
+        <Authentication.Provider value={{loggedIn, setLoggedIn, sessionId, setSessionId, username, setUsername, accountId, setAccountId, favoriteMovies, setFavoriteMovies, favoriteTv, setFavoriteTv, ratedMovies, setRatedMovies, ratedTv, setRatedTv, watchlistMovies, setWatchlistMovies, watchlistTv, setWatchlistTv, refreshFM, setRefreshFM, favoriteMoviesIds, setFavoriteMoviesIds, refreshFTV, setRefreshFTV, favoriteTvIds, setFavoriteTvIds, refreshRM, setRefreshRM, ratedMoviesIds, setRatedMoviesIds, refreshRTV, setRefreshRTV, ratedTvIds, setRatedTvIds, refreshWTV, setRefreshWTV, watchlistTvIds, setWatchlistTvIds, refreshWM, setRefreshWM, watchlistMoviesIds, setWatchlistMoviesIds, refreshRating, setRefreshRating}}>
             {children}
         </Authentication.Provider>
     )

@@ -3,10 +3,12 @@ import { FaPlusSquare, FaMinusSquare, FaLink, FaUnlink, FaEye, FaEyeSlash } from
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Authentication } from '../Context/Authentication';
+import SetRating from '../MovieCard/SetRating';
 
-function MovieCard({id, title, og_title, overview, type, vote_avg, vote_count, poster, release_date, first_air_date }) {
+
+function MovieCard({fullObject, id, title, og_title, overview, type, vote_avg, vote_count, poster, release_date, first_air_date }) {
     
-    const {loggedIn, accountId, sessionId, setRefreshFM, refreshFM, refreshFTV, setRefreshFTV, refreshRM, setRefreshRM, refreshRTV, setRefreshRTV, refreshWTV, setRefreshWTV, refreshWM, setRefreshWM, favoriteMoviesIds, favoriteTvIds, ratedMoviesIds, ratedTvIds, watchlistTvIds, watchlistMoviesIds} = useContext(Authentication);
+    const {loggedIn, accountId, sessionId, setRefreshFM, refreshFM, refreshFTV, setRefreshFTV, refreshRM, setRefreshRM, refreshRTV, setRefreshRTV, refreshWTV, setRefreshWTV, refreshWM, setRefreshWM, favoriteMoviesIds, favoriteTvIds, ratedMoviesIds, ratedTvIds, watchlistTvIds, watchlistMoviesIds, ratedMovies, ratedTv, refreshRating, setRefreshRating} = useContext(Authentication);
     
     const navigate = useNavigate();
     const [isFavorite, setIsFavorite] = useState(false);
@@ -14,6 +16,7 @@ function MovieCard({id, title, og_title, overview, type, vote_avg, vote_count, p
     const [rating, setRating] = useState();
     const [isRated, setIsRated] = useState(false);
     const [ratingError, setRatingError] = useState(false);
+    const [serverRating, setServerRating] = useState();
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,19 +158,118 @@ function MovieCard({id, title, og_title, overview, type, vote_avg, vote_count, p
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Rating --------------------------------------------------------------------------------------------------------
 
-    const handleChange = (e) => {
-        const rating = parseFloat(e.target.value);
-        setRating(rating);
-        }
-    
-    const handleSubmit = (e) => {
-        if (0.5 <= rating && rating <= 10.0) {
-            console.log('ok');
+    useEffect(() => {
+        checkRated();
+    }, [ratedMoviesIds, ratedTvIds, refreshRating])
+
+    const checkRated = () => {
+        if (type === 'Movie') {
+            setIsRated(ratedMoviesIds.includes(parseInt(id)));
+            if (ratedMoviesIds.includes(parseInt(id))) {
+                setServerRating(ratedMovies.map((movie) => {
+                    if (movie.id === id) {
+                        return movie.rating
+                    }
+                }))
+            }
         } else {
-            console.log('invalid');
+            setIsRated(ratedTvIds.includes(parseInt(id)));
+            if (ratedTvIds.includes(parseInt(id))) {
+                setServerRating(ratedTv.map((movie) => {
+                    if (movie.id === id) {
+                        return movie.rating
+                    }
+                }))
+            }
         }
     }
 
+
+
+    const rateBody = {
+        value: parseFloat(rating)
+    }
+    
+    const handleChange = (e) => {
+        const rating = parseFloat(e.target.value);
+        setRating(rating);
+        if (rating < 0.5 || rating > 10.0) {
+            setRatingError(true);
+        } else {
+            setRatingError(false);
+        }
+        }
+
+    
+    
+    const handleSubmit = (e) => {
+        if (0.5 <= rating && rating <= 10.0) {
+            if (!loggedIn) {
+                navigate('/sign-up');
+            } else {
+                if (type === 'Movie') {
+                    fetch(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(rateBody)
+                    })
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        setRefreshRM(!refreshRM);
+                    })
+                } else {
+                    fetch(`https://api.themoviedb.org/3/tv/${id}/rating?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(rateBody)
+                    })
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        setRefreshRTV(!refreshRTV);
+                    })
+                }
+            }
+    }
+}
+    const handleDelete = () => {
+        if (!loggedIn) {
+            navigate('/sign-up');
+        } else {
+            if (type === 'Movie') {
+                fetch(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then((resp) => resp.json())
+                .then((data) => {
+                    setRefreshRM(!refreshRM);
+                })
+            } else {
+                fetch(`https://api.themoviedb.org/3/tv/${id}/rating?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then((resp) => resp.json())
+                .then((data) => {
+                    setRefreshFTV(!refreshFTV);
+                })
+            }
+        }
+    }
+
+    const buttonClick = () => {
+        console.log(ratedMovies);
+        console.log(ratedMoviesIds);
+        console.log(ratedMoviesIds.includes(parseInt(id)));
+    }
 
 
     //Rating End --------------------------------------------------------------------------------------------------------
@@ -190,10 +292,22 @@ function MovieCard({id, title, og_title, overview, type, vote_avg, vote_count, p
             </div>
             <div className={styles.actionsContainer}>
                 <div className={styles.rateCard}>
+                <button onClick={buttonClick}>click</button>
+                {!isRated ? <div>
                     <p>Rate Movie (from 0.5 to 10.0)</p>
-                    <p className={styles.ratingStatus}>Rating status</p>
-                    <input onChange={handleChange} type='number'></input>
-                    <button onClick={handleSubmit}>Submit</button>
+                        <p className={!ratingError ? `${styles.ratingStatus}` : `${styles.ratingStatus} ${styles.ratingStatusShow}`}>Invalid rating</p>
+                        <input onChange={handleChange} type='number'></input>
+                        <button onClick={handleSubmit}>Submit</button>
+                    </div> : 
+                    <div>
+                        <p>Your rating: {serverRating}</p>
+                        <p className={!ratingError ? `${styles.ratingStatus}` : `${styles.ratingStatus} ${styles.ratingStatusShow}`}>Invalid rating</p>
+                        <input onChange={handleChange} type='number'></input>
+                        <button onClick={handleSubmit}>Edit</button>
+                        <button onClick={handleDelete}>Delete rating</button>
+                    </div>
+                    }
+                <SetRating id={id} type={type} fullObject={fullObject}/>
                 </div>
                 <div className={styles.buttonCard}>
                     <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>

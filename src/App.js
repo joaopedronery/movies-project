@@ -26,7 +26,7 @@ function App() {
     setFullWidth(false);
   }
 
-  const {loggedIn, sessionId, accountId, setAccountId, setUsername, setFavoriteMovies, setFavoriteTv, setRatedMovies, setRatedTv, setWatchlistMovies, setWatchlistTv, refreshFM, favoriteMoviesIds, setFavoriteMoviesIds, refreshFTV, favoriteTvIds, setFavoriteTvIds, refreshRM, ratedMoviesIds, setRatedMoviesIds, refreshRTV, ratedTvIds, setRatedTvIds, refreshWTV, watchlistTvIds, setWatchlistTvIds, refreshWM, watchlistMoviesIds, setWatchlistMoviesIds} = useContext(Authentication);
+  const {loggedIn, sessionId, accountId, setAccountId, setUsername, setFavoriteMovies, favoriteMovies, setFavoriteTv, setRatedMovies, setRatedTv, setWatchlistMovies, setWatchlistTv, refreshFM, favoriteMoviesIds, setFavoriteMoviesIds, refreshFTV, favoriteTvIds, setFavoriteTvIds, refreshRM, ratedMoviesIds, setRatedMoviesIds, refreshRTV, ratedTvIds, setRatedTvIds, refreshWTV, watchlistTvIds, setWatchlistTvIds, refreshWM, watchlistMoviesIds, setWatchlistMoviesIds} = useContext(Authentication);
   
   const setIds = (list, setter) => {
     let idsList;
@@ -57,7 +57,12 @@ function App() {
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setFavoriteMovies(data.results);
@@ -65,11 +70,16 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-  }, [accountId, refreshFM])
+  }, [accountId])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setFavoriteTv(data.results);
@@ -77,11 +87,16 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-  }, [accountId, refreshFTV])
+  }, [accountId])
 
   useEffect(() => {
     if (accountId) {  
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setRatedMovies(data.results);
@@ -89,11 +104,16 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-  }, [accountId, refreshRM])
+  }, [accountId])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/rated/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setRatedTv(data.results);
@@ -101,11 +121,16 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-  }, [accountId, refreshRTV])
+  }, [accountId])
 
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/movies?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setWatchlistMovies(data.results);
@@ -113,12 +138,17 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-    }, [accountId, refreshWM])
+    }, [accountId])
 
   
   useEffect(() => {
     if (accountId) {
-      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`)
+      fetch(`https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=a0613aadd6388a2410f231f12bddae65&session_id=${sessionId}&language=en-US&sort_by=created_at.desc&page=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((resp) => resp.json())
       .then((data) => {
         setWatchlistTv(data.results);
@@ -126,12 +156,17 @@ function App() {
       })
       .catch((err) => console.log(err))
     }
-  }, [accountId, refreshWTV])
+  }, [accountId])
   
+  const handleClick = () => {
+    console.log(favoriteMovies);
+  }
+
   return (
     <div className="App">
       <Router>
         <Navbar />
+        <button onClick={handleClick}>click</button>
         <Container customClass={fullWidth ? 'fullWidth' : ''}>
           <Routes>
             <Route path='/movies-project' element={<Home setContainerFull={setContainerFull} />} />
