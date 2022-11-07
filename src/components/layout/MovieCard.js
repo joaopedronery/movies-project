@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Authentication } from '../Context/Authentication';
 import SetRating from '../MovieCard/SetRating';
+import SetFavorite from '../MovieCard/SetFavorite';
 
 
 function MovieCard({fullObject, id, title, og_title, overview, type, vote_avg, vote_count, poster, release_date, first_air_date }) {
@@ -312,6 +313,7 @@ function MovieCard({fullObject, id, title, og_title, overview, type, vote_avg, v
                 <div className={styles.buttonCard}>
                     <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
                 </div>
+                <SetFavorite type={type} id={id}/>
                 <div className={styles.buttonCard}>
                     <button onClick={handleWatchlist}>{!isWatchlist ? <FaEye /> : <FaEyeSlash />}<p>{!isWatchlist ? 'Add to watchlist' : 'Remove from watchlist'}</p></button>
                 </div>
