@@ -1,0 +1,29 @@
+.buttonCard {
+    display: flex;
+    margin-top: 30px;
+}
+
+.buttonCard p {
+    margin: 10px 0px;
+    font-weight: 500;
+}
+
+.buttonCard button {
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonCard svg {
+    color: #ffbb33;
+}
+
+.buttonCard button:hover svg {
+    color: #fff;
+    transition: 0.5s;
+}
+
+.buttonCard button:hover p {
+    color: #ffbb33;
+    transition: 0.5s;
+}

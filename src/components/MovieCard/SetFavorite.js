@@ -110,10 +110,9 @@ function SetFavorite({type, id}) {
 
     return (
         <div>
-            <div className={styles.buttonCard2}>
+            <div className={styles.buttonCard}>
                 <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
             </div>
-            <p>hello</p>
         </div>
     )
 

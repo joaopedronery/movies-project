@@ -158,15 +158,12 @@ function App() {
     }
   }, [accountId])
   
-  const handleClick = () => {
-    console.log(favoriteMovies);
-  }
+
 
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <button onClick={handleClick}>click</button>
         <Container customClass={fullWidth ? 'fullWidth' : ''}>
           <Routes>
             <Route path='/movies-project' element={<Home setContainerFull={setContainerFull} />} />

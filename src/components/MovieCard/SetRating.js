@@ -184,7 +184,7 @@ function SetRating({id, type}) {
     }
     
     return (
-        <div>
+        <div className={styles.rateCard}>
             {!isRated ? <div>
                 <p>Rate Movie (from 0.5 to 10.0)</p>
                     <p className={!ratingError ? `${styles.ratingStatus}` : `${styles.ratingStatus} ${styles.ratingStatusShow}`}>Invalid rating</p>
