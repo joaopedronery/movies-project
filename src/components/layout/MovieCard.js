@@ -310,9 +310,6 @@ function MovieCard({fullObject, id, title, og_title, overview, type, vote_avg, v
                     }
                 <SetRating id={id} type={type} fullObject={fullObject}/>
                 </div>
-                <div className={styles.buttonCard}>
-                    <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
-                </div>
                 <SetFavorite type={type} id={id}/>
                 <div className={styles.buttonCard}>
                     <button onClick={handleWatchlist}>{!isWatchlist ? <FaEye /> : <FaEyeSlash />}<p>{!isWatchlist ? 'Add to watchlist' : 'Remove from watchlist'}</p></button>

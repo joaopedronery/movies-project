@@ -76,6 +76,7 @@ function SetFavorite({type, id}) {
                 refreshFavorite(type); 
         })
     }
+    }
 
     const refreshFavorite = (type) => {
         if (type === 'Movie') {
@@ -108,11 +109,14 @@ function SetFavorite({type, id}) {
     }
 
     return (
-        <div className={styles.buttonCard}>
-            <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
+        <div>
+            <div className={styles.buttonCard2}>
+                <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
+            </div>
+            <p>hello</p>
         </div>
     )
-}
+
 
 }
 
