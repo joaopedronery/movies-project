@@ -24,12 +24,12 @@ function Account({setContainer80}) {
     return (
         <div className={styles.accountContainer}>
             <PageTitle titleText={username} />
-            <CarouselAccount movieData={favoriteMovies} title='Favorite Movies'/>
-            <CarouselAccount movieData={favoriteTv} title='Favorite Tv Shows'/>
-            <CarouselAccount movieData={watchlistMovies} title='Movies Watchlist'/>
-            <CarouselAccount movieData={watchlistTv} title='Tv Shows Watchlist'/>
-            <CarouselAccount movieData={ratedMovies} title='Rated Movies'/>
-            <CarouselAccount movieData={ratedTv} title='Rated Tv Shows'/>
+            <CarouselAccount movieData={favoriteMovies} title='Favorite Movies' type='movies' action='favorite'/>
+            <CarouselAccount movieData={favoriteTv} title='Favorite Tv Shows' type='tv' action='favorite'/>
+            <CarouselAccount movieData={watchlistMovies} title='Movies Watchlist' type='movies' action='watchlist'/>
+            <CarouselAccount movieData={watchlistTv} title='Tv Shows Watchlist' type='tv' action='watchlist'/>
+            <CarouselAccount movieData={ratedMovies} title='Rated Movies' type='movies' action='rating'/>
+            <CarouselAccount movieData={ratedTv} title='Rated Tv Shows' type='tv' action='rating'/>
         </div>
     )
 }

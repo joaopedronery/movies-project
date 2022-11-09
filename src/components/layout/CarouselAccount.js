@@ -1,5 +1,6 @@
 import styles from './CarouselAccount.module.css';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { Authentication } from '../Context/Authentication';
 import {FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa';
 
 function CarouselAccount({movieData, title}) {
@@ -14,6 +15,10 @@ function CarouselAccount({movieData, title}) {
         carousel.current.scrollLeft += carousel.current.offsetWidth;
     }
 
+    const handleClick = () => {
+        console.log(movieData);
+    }
+
     return (
             <div className={styles.carouselContainer}>
                 <h2 className={styles.title}>{title}</h2>
@@ -24,6 +29,7 @@ function CarouselAccount({movieData, title}) {
                             <div className={styles.carouselImage}>
                                 <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
                             </div>
+                            <button onClick={handleClick}>click</button>
                         </div>
                     ))}
                 </div> ) : (

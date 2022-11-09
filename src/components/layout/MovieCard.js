@@ -25,7 +25,7 @@ function MovieCard({fullObject, id, title, og_title, overview, type, vote_avg, v
                 <p><span>{release_date ? 'Release date:' : 'First air date:'}</span> {release_date ? release_date : first_air_date}</p>
             </div>
             <div className={styles.actionsContainer}>
-                <SetRating id={id} type={type} fullObject={fullObject}/>
+                <SetRating id={id} type={type} />
                 <SetFavorite type={type} id={id}/>
                 <SetWatchlist type={type} id={id} />
             </div>
