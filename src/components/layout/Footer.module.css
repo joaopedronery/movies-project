@@ -29,3 +29,12 @@
 .copyright span {
     color: #ffbb33;
 }
+
+.copyright a {
+    text-decoration: none;
+    color: #ffbb33;
+}
+
+.copyright a:hover {
+    color: #ffbb33ab;
+}
