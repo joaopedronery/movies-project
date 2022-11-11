@@ -4,7 +4,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Authentication } from '../Context/Authentication';
 
-function SetWatchlist({id, type}) {
+function SetWatchlist({id, type, customClass}) {
     
     const {loggedIn, accountId, sessionId, watchlistMoviesIds, watchlistTvIds, setWatchlistMoviesIds, setWatchlistTvIds, setWatchlistMovies, setWatchlistTv} = useContext(Authentication);
     const navigate = useNavigate();
@@ -110,7 +110,7 @@ function SetWatchlist({id, type}) {
         }
     } 
     return (
-        <div className={styles.buttonCard}>
+        <div className={!customClass ? styles.buttonCard : styles[customClass]}>
             <button onClick={handleWatchlist}>{!isWatchlist ? <FaEye /> : <FaEyeSlash />}<p>{!isWatchlist ? 'Add to watchlist' : 'Remove from watchlist'}</p></button>
         </div>
     )

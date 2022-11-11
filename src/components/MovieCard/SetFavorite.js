@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Authentication } from '../Context/Authentication';
 import {FaLink, FaUnlink} from 'react-icons/fa';
 
-function SetFavorite({type, id}) {
+function SetFavorite({type, id, customClass}) {
     
     const {loggedIn, accountId, sessionId, favoriteMoviesIds, favoriteTvIds, setFavoriteMoviesIds, setFavoriteTvIds, setFavoriteMovies, setFavoriteTv} = useContext(Authentication);
     const navigate = useNavigate();
@@ -110,7 +110,7 @@ function SetFavorite({type, id}) {
 
     return (
         <div>
-            <div className={styles.buttonCard}>
+            <div className={!customClass ? styles.buttonCard : styles[customClass]}>
                 <button onClick={handleFavorite}>{!isFavorite ?<FaLink /> : <FaUnlink /> }<p>{!isFavorite ? 'Add to favorites' : 'Remove from favorites' }</p></button>
             </div>
         </div>

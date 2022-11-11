@@ -30,3 +30,42 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+.carouselAccount p {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.carouselAccount button {
+    border: none;
+    background-color: #ffbb33;
+    font-weight: 500;
+    padding: 7px 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.carouselAccount button:hover {
+    color: rgba(0, 0, 0, 0.459);
+    transition: .5s;
+}
+
+
+.carouselAccount {
+    display: flex;
+    justify-content: center ;
+}
+
+.ratingContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ratingContainer p {
+    width: 100%;
+    text-align: center;
+}

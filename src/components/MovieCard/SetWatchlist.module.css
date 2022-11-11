@@ -27,3 +27,38 @@
     color: #ffbb33;
     transition: 0.5s;
 }
+
+.carouselAccount {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.carouselAccount p {
+    margin: 10px 0px;
+    font-weight: 500;
+    font-size: 0.65rem;
+}
+
+.carouselAccount button {
+    background-color: #ffbb33;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.carouselAccount svg {
+    color: black;
+    font-size: 1.2rem;
+}
+
+.carouselAccount button:hover svg {
+    color: rgba(0, 0, 0, 0.329);
+    transition: 0.5s;
+}
+
+.carouselAccount button:hover p {
+    color: rgba(0, 0, 0, 0.329);
+    transition: 0.5s;
+}

@@ -2,8 +2,11 @@ import styles from './CarouselAccount.module.css';
 import { useRef, useContext } from 'react';
 import { Authentication } from '../Context/Authentication';
 import {FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa';
+import SetRating from '../MovieCard/SetRating';
+import SetFavorite from '../MovieCard/SetFavorite';
+import SetWatchlist from '../MovieCard/SetWatchlist';
 
-function CarouselAccount({movieData, title}) {
+function CarouselAccount({movieData, title, type, action}) {
     
     const carousel = useRef(null);
     
@@ -15,9 +18,6 @@ function CarouselAccount({movieData, title}) {
         carousel.current.scrollLeft += carousel.current.offsetWidth;
     }
 
-    const handleClick = () => {
-        console.log(movieData);
-    }
 
     return (
             <div className={styles.carouselContainer}>
@@ -26,10 +26,16 @@ function CarouselAccount({movieData, title}) {
                 <div className={styles.carousel} ref={carousel}>
                     {movieData.map((movie) => (
                         <div key={movie.id} className={styles.carouselItem}>
-                            <div className={styles.carouselImage}>
-                                <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
+                            <div>
+                                <div className={styles.carouselImage}>
+                                    <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
+                                </div>
+                                <div>
+                                    {action === 'rating' && <SetRating customClass='carouselAccount' id={movie.id} type={type} />}
+                                    {action === 'favorite' && <SetFavorite customClass='carouselAccount' id={movie.id} type={type} />}
+                                    {action === 'watchlist' && <SetWatchlist customClass='carouselAccount' id={movie.id} type={type} />}
+                                </div>
                             </div>
-                            <button onClick={handleClick}>click</button>
                         </div>
                     ))}
                 </div> ) : (

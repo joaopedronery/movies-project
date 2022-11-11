@@ -5,7 +5,7 @@ import { Authentication } from '../Context/Authentication';
 import RatingSpinner from './RatingSpinner';
 
 
-function SetRating({id, type}) {
+function SetRating({id, type, customClass}) {
     
     const {loggedIn, accountId, sessionId, ratedMoviesIds, ratedTvIds, ratedMovies, ratedTv, setRatedMoviesIds, setRatedTvIds, setRatedMovies, setRatedTv} = useContext(Authentication);
 
@@ -184,7 +184,7 @@ function SetRating({id, type}) {
     }
     
     return (
-        <div className={styles.rateCard}>
+        <div className={!customClass ? styles.rateCard : styles[customClass]}>
             {!isRated ? <div>
                 <p>Rate Movie (from 0.5 to 10.0)</p>
                     <p className={!ratingError ? `${styles.ratingStatus}` : `${styles.ratingStatus} ${styles.ratingStatusShow}`}>Invalid rating</p>
@@ -192,7 +192,7 @@ function SetRating({id, type}) {
                     <button onClick={handleSubmit}>Submit</button>
                     {ratingLoading && <RatingSpinner />}
                 </div> :
-                <div>
+                <div className={customClass ? styles.ratingContainer : ''}>
                     <p>Your rating: {serverRating}</p>
                     <button onClick={handleDelete}>Delete rating</button>
                     {ratingLoading && <RatingSpinner />}
